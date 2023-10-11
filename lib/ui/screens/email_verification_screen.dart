@@ -47,7 +47,7 @@ class EmailVerificationScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const OtpVerification()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const OtpVerificationScreen()));
                   },
                   child: const Icon(Icons.arrow_forward),
                 ),

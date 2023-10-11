@@ -3,8 +3,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/login_screen.dart';
 import 'package:task_manager/ui/screens/reset_password_screen.dart';
 
-class OtpVerification extends StatelessWidget {
-  const OtpVerification({super.key});
+class OtpVerificationScreen extends StatelessWidget {
+  const OtpVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class OtpVerification extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ResetPassword()),
+                            builder: (context) => const ResetPasswordScreen()),
                         (route) => false);
                   },
                   child: const Text("Verify"),
