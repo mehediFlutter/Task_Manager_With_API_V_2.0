@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/login_screen.dart';
-import 'package:task_manager/ui/screens/reset_password_screen.dart';
 
-class OtpVerification extends StatelessWidget {
-  const OtpVerification({super.key});
+class ResetPassword extends StatelessWidget {
+  const ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +20,14 @@ class OtpVerification extends StatelessWidget {
                 height: 64,
               ),
               Text(
-                "PIN Verification",
+                "Set Password",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                "A 6 digits pin will sent to your email",
+                "Minimum password should be 8 letter and symbol",
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -37,34 +36,19 @@ class OtpVerification extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              PinCodeTextField(
-                keyboardType: TextInputType.number,
-                length: 6,
-                obscureText: false,
-                animationType: AnimationType.fade,
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(5),
-                  fieldHeight: 50,
-                  fieldWidth: 40,
-                  activeFillColor: Colors.white,
-                  inactiveFillColor: Colors.white,
-                  inactiveColor: Colors.red,
-                  selectedColor: Colors.white,
-                  selectedFillColor: Colors.white,
+              const TextField(
+                obscureText: true,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: "Password",
                 ),
-                animationDuration: Duration(milliseconds: 300),
-                backgroundColor: Colors.blue.shade50,
-                enableActiveFill: true,
-                cursorColor: Colors.green,
-                onCompleted: (v) {},
-                onChanged: (value) {},
-                beforeTextPaste: (text) {
-                  print("Allowing to paste $text");
-
-                  return true;
-                },
-                appContext: context,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(hintText: "Confirm password"),
               ),
               const SizedBox(
                 height: 10,
@@ -75,11 +59,10 @@ class OtpVerification extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => ResetPassword()),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                         (route) => false);
                   },
-                  child: const Text("Verify"),
+                  child: const Text("Confirm"),
                 ),
               ),
               const SizedBox(
