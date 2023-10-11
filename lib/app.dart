@@ -39,6 +39,9 @@ class TaskManagerApp extends StatelessWidget {
             letterSpacing: 0.6,
             
           ),
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.w500
+          )
         ),
       ),
       darkTheme: ThemeData(
