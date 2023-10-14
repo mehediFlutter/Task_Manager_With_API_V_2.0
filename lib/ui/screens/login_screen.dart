@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:task_manager/ui/screens/email_verification_screen.dart';
-import 'package:task_manager/ui/utils/assets_utils.dart';
+import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -68,7 +67,9 @@ class LoginScreen extends StatelessWidget {
                   "Don't have an account?",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                TextButton(onPressed: () {}, child: const Text("Sign up")),
+                TextButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpScreen()));
+                }, child: const Text("Sign up")),
               ],
                       ),
                     ],
