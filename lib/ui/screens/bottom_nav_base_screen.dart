@@ -23,9 +23,7 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF104152),
-      ),
+      
       body: _screens[_selectedScreenIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedScreenIndex,

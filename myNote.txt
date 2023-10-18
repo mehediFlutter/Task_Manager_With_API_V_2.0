@@ -1,0 +1,2 @@
+1. String contatination:
+ '${AuthUtility.userInfo.data?.firstName ?? '' } ${AuthUtility.userInfo.data?.lastName?? ''}',

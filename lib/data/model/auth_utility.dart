@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:task_manager/data/model/login_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,12 +10,14 @@ class AuthUtility {
  static Future<void> saveUserInfo(LoginModel model) async {
     SharedPreferences _sharedPrefs = await SharedPreferences.getInstance();
     await _sharedPrefs.setString('user-data', jsonEncode(model.toJson()));
+      userInfo = model;
   }
     
   static  Future<LoginModel> getUserInfo() async{
       SharedPreferences _sharedPrefs = await SharedPreferences.getInstance(); 
      String value = _sharedPrefs.getString('user-data')!;
      return LoginModel.fromJson(jsonDecode(value));
+   
     }
 
  static Future<void> clearUserInfo() async {

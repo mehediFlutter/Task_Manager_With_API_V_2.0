@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/model/auth_utility.dart';
+import 'package:task_manager/ui/screens/auth/login_screen.dart';
 import 'package:task_manager/ui/screens/update_profile_screen.dart';
 
-class UserProfileBanner extends StatelessWidget {
+class UserProfileBanner extends StatefulWidget {
   const UserProfileBanner({
     super.key,
   });
 
   @override
+  State<UserProfileBanner> createState() => _UserProfileBannerState();
+}
+
+class _UserProfileBannerState extends State<UserProfileBanner> {
+  @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => UserProfileScreen()));
-      },
-      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-      tileColor: Colors.green,
-      leading: const CircleAvatar(
-        backgroundImage: NetworkImage(
-            "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"),
-      ),
-      title: Text(
-       '${AuthUtility.userInfo.data?.firstName ?? '' } ${AuthUtility.userInfo.data?.lastName?? ''}',
-        style: TextStyle(fontSize: 14, color: Colors.white),
-      ),
-      subtitle:  Text(AuthUtility.userInfo.data?.email?? '',
-          style: const TextStyle(fontSize: 14, color: Colors.white)),
-    );
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const UserProfileScreen()));
+        },
+        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+        tileColor: Colors.green,
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(AuthUtility.userInfo.data?.photo ?? ''),
+          onBackgroundImageError: (_, __) {
+            const Icon(Icons.image);
+          },
+        ),
+        title: Text(
+          '${AuthUtility.userInfo.data?.firstName ?? ''} ${AuthUtility.userInfo.data?.lastName ?? ''}',
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        subtitle: Text(AuthUtility.userInfo.data?.email ?? '',
+            style: const TextStyle(fontSize: 14, color: Colors.white)),
+        trailing: IconButton(
+          onPressed: () async {
+            await AuthUtility.clearUserInfo();
+            if (mounted) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  (route) => false);
+            }
+          },
+          icon: const Icon(Icons.logout),
+        ));
   }
 }
